@@ -59,6 +59,9 @@ const styles = StyleSheet.create({
   },
   pharmacyImage: {
     marginRight: 14,
+    width: 80,
+    height: 80,
+    resizeMode: 'contain',
   },
   title: {
     fontSize: 18,

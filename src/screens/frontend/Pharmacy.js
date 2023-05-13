@@ -13,7 +13,7 @@ import PharmacyItem from '../../components/pharmacyComponents/PharmacyItem';
 const pharmacyData = [
   {
     id: 1,
-    image: require('../../assets/images/pharmacy1.png'),
+    image: require('../../assets/images/biotin.jpeg'),
   },
   {
     id: 2,
