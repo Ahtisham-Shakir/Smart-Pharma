@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "390830516021",
+    "project_id": "smart-pharma-7ec7c",
+    "storage_bucket": "smart-pharma-7ec7c.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:390830516021:android:9f589239010fd23f7dce7c",
+        "android_client_info": {
+          "package_name": "com.healthkeys"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "390830516021-17i82k6nrb02euckl8pt7i1cdiem76io.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.healthkeys",
+            "certificate_hash": "5e8f16062ea3cd2c4a0d547876baa6f38cabf625"
+          }
+        },
+        {
+          "client_id": "390830516021-8c9b0dau03mdm2s39qdmrdoja4vqt0o6.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBzzsxX2H4I8FNWDX6-V9qUBXq5J-ZC_cU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "390830516021-8c9b0dau03mdm2s39qdmrdoja4vqt0o6.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

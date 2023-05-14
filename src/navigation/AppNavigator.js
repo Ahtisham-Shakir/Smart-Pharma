@@ -1,25 +1,39 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 
 // Screen
 import Home from '../screens/frontend/Home';
 import Pharmacy from '../screens/frontend/Pharmacy';
 import PharmacyDetails from '../screens/frontend/PharmacyDetails';
+import Login from '../screens/auth/Login';
+import Signup from '../screens/auth/Signup';
 
 // Navigation imports
 import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
+
+// Icons
 import Ant from 'react-native-vector-icons/AntDesign';
 import Fontisto from 'react-native-vector-icons/Fontisto';
 import MaterialCommunity from 'react-native-vector-icons/MaterialCommunityIcons';
-import Login from '../screens/auth/Login';
-import Signup from '../screens/auth/Signup';
+
+import auth from '@react-native-firebase/auth';
 
 export default function AppNavigator() {
-  const [user, setUser] = useState(true);
+  const [user, setUser] = useState(false);
   const screenOptions = {
     headerShown: false,
   };
+
+  function onAuthStateChanged(res) {
+    setUser(res);
+    console.log(res);
+  }
+
+  useEffect(() => {
+    const subscriber = auth().onAuthStateChanged(onAuthStateChanged);
+    return subscriber;
+  }, []);
 
   const Tab = createBottomTabNavigator();
   const Stack = createStackNavigator();

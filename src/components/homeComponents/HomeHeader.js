@@ -1,8 +1,20 @@
 import React from 'react';
-import {View, Text, StyleSheet, Image} from 'react-native';
+import {View, Text, StyleSheet, Image, TouchableHighlight} from 'react-native';
 import user from '../../assets/images/user.png';
+import {TouchableOpacity} from 'react-native-gesture-handler';
+import auth from '@react-native-firebase/auth';
 
 export default function HomeHeader() {
+  const handleLogout = () => {
+    auth()
+      .signOut()
+      .then(() => {
+        alert('You have been logged out');
+      })
+      .catch(error => {
+        console.log(error);
+      });
+  };
   return (
     <View style={styles.headerContainer}>
       <View>
@@ -10,7 +22,12 @@ export default function HomeHeader() {
         <Text style={styles.title}>Jacob Jones</Text>
       </View>
       <View>
-        <Image source={user} />
+        <TouchableOpacity onPress={() => alert('clicked')}>
+          <Image source={user} />
+        </TouchableOpacity>
+        <TouchableHighlight onPress={handleLogout}>
+          <Text>Logout</Text>
+        </TouchableHighlight>
       </View>
     </View>
   );

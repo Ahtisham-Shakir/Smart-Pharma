@@ -8,35 +8,61 @@ import {
   Image,
 } from 'react-native';
 import logo from '../../assets/images/Vector.png';
+import auth from '@react-native-firebase/auth';
+import {ActivityIndicator} from 'react-native';
 
 const Signup = ({navigation}) => {
-  const [loginData, setLoginData] = useState({
+  const [loading, setLoading] = useState(false);
+  const [userData, setUserData] = useState({
     username: '',
+    email: '',
     password: '',
   });
 
   // Function to handle change in input values
   const handleChange = (name, val) => {
-    setLoginData(state => ({
+    setUserData(state => ({
       ...state,
       [name]: val,
     }));
   };
 
-  // Function to login user
-  const handleLogin = () => {
-    if (!loginData.username || !loginData.password) {
+  // Function to Register user
+  const handleSignup = () => {
+    if (!userData.username || !userData.email || !userData.password) {
       alert('Please fill all the fields');
     } else {
-      alert(`${loginData.username} || ${loginData.password}`);
-    }
-  };
+      setLoading(true);
+      auth()
+        .createUserWithEmailAndPassword(userData.email, userData.password)
+        .then(res => {
+          // console.log('res during signed in', res);
+          alert('Account has been created successfully!');
+        })
+        .catch(error => {
+          if (error.code === 'auth/email-already-in-use') {
+            alert('That email address is already in use!');
+          }
 
-  // Function to register user
-  const handleRegister = () => {
-    if (!loginData.username || !loginData.password) {
-      alert('Please fill all the fields');
-    } else alert(`${loginData.username} || ${loginData.password}`);
+          if (error.code === 'auth/invalid-email') {
+            alert('That email address is invalid!');
+          }
+
+          if (error.code === 'auth/weak-password') {
+            alert('Password should be at least 6 characters');
+          }
+
+          console.error(error);
+        })
+        .finally(() => {
+          setUserData({
+            username: '',
+            email: '',
+            password: '',
+          });
+          setLoading(false);
+        });
+    }
   };
 
   return (
@@ -56,7 +82,7 @@ const Signup = ({navigation}) => {
           placeholderTextColor={'gray'}
           style={styles.input}
           placeholder="Enter Email"
-          onChangeText={val => handleChange('username', val)}
+          onChangeText={val => handleChange('email', val)}
         />
         <TextInput
           placeholderTextColor={'gray'}
@@ -67,10 +93,21 @@ const Signup = ({navigation}) => {
         />
       </View>
       <TouchableHighlight
+        disabled={loading}
         underlayColor={'#1F97D0'}
         style={styles.btn}
-        onPress={handleLogin}>
-        <Text style={styles.btnText}>Sign Up</Text>
+        onPress={handleSignup}>
+        <View
+          style={{
+            flexDirection: 'row',
+            justifyContent: 'center',
+            alignItems: 'center',
+          }}>
+          {loading && (
+            <ActivityIndicator style={{marginRight: 5}} color={'#fff'} />
+          )}
+          <Text style={styles.btnText}>Sign Up</Text>
+        </View>
       </TouchableHighlight>
       <TouchableHighlight
         underlayColor={'transparent'}

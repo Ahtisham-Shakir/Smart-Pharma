@@ -8,10 +8,13 @@ import {
   Image,
 } from 'react-native';
 import logo from '../../assets/images/Vector.png';
+import auth from '@react-native-firebase/auth';
+import {ActivityIndicator} from 'react-native';
 
 const Login = ({navigation}) => {
+  const [loading, setLoading] = useState(false);
   const [loginData, setLoginData] = useState({
-    username: '',
+    email: '',
     password: '',
   });
 
@@ -25,10 +28,28 @@ const Login = ({navigation}) => {
 
   // Function to login user
   const handleLogin = () => {
-    if (!loginData.username || !loginData.password) {
+    if (!loginData.email || !loginData.password) {
       alert('Please fill all the fields');
     } else {
-      alert(`${loginData.username} || ${loginData.password}`);
+      setLoading(true);
+      auth()
+        .signInWithEmailAndPassword(loginData.email, loginData.password)
+        .then(() => {
+          alert('Logged in Successfully!');
+        })
+        .catch(error => {
+          if (error.code === 'auth/wrong-password') {
+            alert('Invalid Email or Password');
+          } else if (error.code === 'auth/too-many-requests') {
+            alert('Too many failed attempts try again shortly');
+          } else if (error.code === 'auth/user-not-found') {
+            alert('Account not found!');
+          }
+          console.log('login ', error);
+        })
+        .finally(() => {
+          setLoading(false);
+        });
     }
   };
 
@@ -43,7 +64,7 @@ const Login = ({navigation}) => {
           placeholderTextColor={'gray'}
           style={styles.input}
           placeholder="Enter Email"
-          onChangeText={val => handleChange('username', val)}
+          onChangeText={val => handleChange('email', val)}
         />
         <TextInput
           placeholderTextColor={'gray'}
@@ -54,10 +75,21 @@ const Login = ({navigation}) => {
         />
       </View>
       <TouchableHighlight
+        disabled={loading}
         underlayColor={'#1F97D0'}
         style={styles.btn}
         onPress={handleLogin}>
-        <Text style={styles.btnText}>LOGIN</Text>
+        <View
+          style={{
+            flexDirection: 'row',
+            justifyContent: 'center',
+            alignItems: 'center',
+          }}>
+          {loading && (
+            <ActivityIndicator style={{marginRight: 5}} color={'#fff'} />
+          )}
+          <Text style={styles.btnText}>LOGIN</Text>
+        </View>
       </TouchableHighlight>
       <TouchableHighlight
         underlayColor={'transparent'}
