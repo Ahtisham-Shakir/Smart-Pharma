@@ -5,7 +5,7 @@ import {View, Text, StyleSheet, Image, TouchableOpacity} from 'react-native';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import MaterialIcon from 'react-native-vector-icons/MaterialIcons';
 
-export default function PharmacyItem({image, navigation}) {
+export default function PharmacyItem({image, navigation, price}) {
   return (
     <View style={styles.pharmacyContainer}>
       <AntDesign name="hearto" size={18} style={styles.Icon} />
@@ -26,13 +26,13 @@ export default function PharmacyItem({image, navigation}) {
       <View style={styles.footer}>
         <View>
           <Text style={styles.footerText}>Available</Text>
-          <Text style={styles.footerTime}>10:00 AM - 12:00 PM</Text>
+          <Text style={styles.footerPrice}>RS {price}</Text>
         </View>
         <TouchableOpacity
           style={styles.footerBtn}
           onPress={() => navigation.navigate('PharmacyDetails')}>
           <Text style={{color: '#fff', fontSize: 12, fontWeight: 'bold'}}>
-            More Details
+            Buy
           </Text>
         </TouchableOpacity>
       </View>
@@ -88,14 +88,15 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     alignItems: 'center',
     marginTop: 13,
+    paddingHorizontal: 10,
   },
   footerText: {
     fontSize: 13,
     color: '#64DC97',
     fontWeight: '500',
   },
-  footerTime: {
-    fontSize: 12,
+  footerPrice: {
+    fontSize: 14,
     color: '#677294',
   },
   footerBtn: {

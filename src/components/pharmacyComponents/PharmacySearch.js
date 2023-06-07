@@ -2,11 +2,16 @@ import React from 'react';
 import {View, Text, TextInput, StyleSheet} from 'react-native';
 import EvilIcons from 'react-native-vector-icons/EvilIcons';
 
-export default function PharmacySearch() {
+export default function PharmacySearch({search, setSearch}) {
   return (
     <View style={styles.searchContainer}>
       <EvilIcons name="search" size={24} color="#677294" />
-      <TextInput style={styles.searchInput} placeholder="Search" />
+      <TextInput
+        style={styles.searchInput}
+        placeholder="Search"
+        value={search}
+        onChangeText={newText => setSearch(newText)}
+      />
       <EvilIcons name="close" size={24} color="#677294" />
     </View>
   );

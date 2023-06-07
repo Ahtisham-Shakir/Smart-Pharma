@@ -18,6 +18,7 @@ import Fontisto from 'react-native-vector-icons/Fontisto';
 import MaterialCommunity from 'react-native-vector-icons/MaterialCommunityIcons';
 
 import auth from '@react-native-firebase/auth';
+import Suggest from '../screens/frontend/Suggest';
 
 export default function AppNavigator() {
   const [user, setUser] = useState(false);
@@ -70,8 +71,8 @@ export default function AppNavigator() {
             }}
           />
           <Tab.Screen
-            name="PharmacyDetails"
-            component={PharmacyDetails}
+            name="Suggest"
+            component={Suggest}
             options={{
               tabBarIcon: ({color}) => (
                 <MaterialCommunity name="robot" size={23} color={color} />

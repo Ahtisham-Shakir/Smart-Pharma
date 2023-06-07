@@ -6,6 +6,7 @@ import {
   ScrollView,
   Image,
   ImageBackground,
+  Pressable,
 } from 'react-native';
 
 // images
@@ -18,7 +19,7 @@ import skyblue from '../../assets/images/skyblue.png';
 import purple from '../../assets/images/purple.png';
 import blue from '../../assets/images/blue.png';
 
-export default function Categories() {
+export default function Categories({navigation}) {
   return (
     <>
       <View style={styles.categoriesContainer}>
@@ -30,31 +31,64 @@ export default function Categories() {
           horizontal
           style={{paddingHorizontal: 19}}
           showsHorizontalScrollIndicator={false}>
-          <Category text="Medical Equipment" image={heart} background={pink} />
-          <Category text="Laboratory" image={brain} background={skyblue} />
-          <Category text="Medical insurance" image={teeth} background={blue} />
+          <Category
+            text="Medical Equipment"
+            image={heart}
+            background={pink}
+            navigation={navigation}
+          />
+          <Category
+            text="Laboratory"
+            image={brain}
+            background={skyblue}
+            navigation={navigation}
+          />
+          <Category
+            text="Medical insurance"
+            image={teeth}
+            background={blue}
+            navigation={navigation}
+          />
           <Category
             text="Doctor Appointment"
             image={lungs}
             background={purple}
+            navigation={navigation}
           />
-          <Category text="Pharmacy" image={heart} background={pink} />
-          <Category text="Home Nursing" image={brain} background={skyblue} />
-          <Category text="Medical Media" image={teeth} background={blue} />
+          <Category
+            text="Pharmacy"
+            image={heart}
+            background={pink}
+            navigation={navigation}
+          />
+          <Category
+            text="Home Nursing"
+            image={brain}
+            background={skyblue}
+            navigation={navigation}
+          />
+          <Category
+            text="Medical Media"
+            image={teeth}
+            background={blue}
+            navigation={navigation}
+          />
         </ScrollView>
       </View>
     </>
   );
 }
 
-const Category = ({text, background, image}) => {
+const Category = ({text, background, image, navigation}) => {
   return (
-    <View style={styles.category}>
-      <ImageBackground source={background} style={styles.backgroundImage}>
-        <Image source={image} />
-      </ImageBackground>
-      <Text style={styles.categoryName}>{text}</Text>
-    </View>
+    <Pressable onPress={() => navigation.navigate('Pharmacy')}>
+      <View style={styles.category}>
+        <ImageBackground source={background} style={styles.backgroundImage}>
+          <Image source={image} />
+        </ImageBackground>
+        <Text style={styles.categoryName}>{text}</Text>
+      </View>
+    </Pressable>
   );
 };
 

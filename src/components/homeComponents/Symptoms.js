@@ -1,7 +1,8 @@
 import React from 'react';
 import {View, Text, StyleSheet, Image} from 'react-native';
+import Pressable from 'react-native/Libraries/Components/Pressable/Pressable';
 
-export default function Symptoms() {
+export default function Symptoms({navigation}) {
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Common Symptoms</Text>
@@ -9,42 +10,58 @@ export default function Symptoms() {
         <Box
           text={'Acidity'}
           src={require('../../assets/images/acidity.png')}
+          navigation={navigation}
         />
         <Box
           text={'Anxiety'}
           src={require('../../assets/images/anxiety.png')}
+          navigation={navigation}
         />
         <Box
           text={'BackPain'}
           src={require('../../assets/images/backpain.png')}
+          navigation={navigation}
         />
-        <Box text={'Blood'} src={require('../../assets/images/blood.png')} />
+        <Box
+          text={'Blood'}
+          src={require('../../assets/images/blood.png')}
+          navigation={navigation}
+        />
         <Box
           text={'Depression'}
           src={require('../../assets/images/depression.png')}
+          navigation={navigation}
         />
         <Box
           text={'Diabeties'}
           src={require('../../assets/images/diabeties.png')}
+          navigation={navigation}
         />
-        <Box text={'Fever'} src={require('../../assets/images/fever.png')} />
+        <Box
+          text={'Fever'}
+          src={require('../../assets/images/fever.png')}
+          navigation={navigation}
+        />
         <Box
           text={'Hairfall'}
           src={require('../../assets/images/hairfall.png')}
+          navigation={navigation}
         />
       </View>
     </View>
   );
 }
 
-const Box = ({text, src}) => {
+const Box = ({text, src, navigation}) => {
   return (
-    <View style={styles.boxContainer}>
-      <View style={styles.imgContainer}>
-        <Image source={src} style={styles.img} />
+    <Pressable onPress={() => navigation.navigate('Suggest', {name: text})}>
+      <View style={styles.boxContainer}>
+        <View style={styles.imgContainer}>
+          <Image source={src} style={styles.img} />
+        </View>
+        <Text style={styles.text}>{text}</Text>
       </View>
-      <Text style={styles.text}>{text}</Text>
-    </View>
+    </Pressable>
   );
 };
 

@@ -10,7 +10,7 @@ import SearchBox from '../../components/homeComponents/SearchBox';
 import StepCounter from '../../components/homeComponents/StepCounter';
 import Symptoms from '../../components/homeComponents/Symptoms';
 
-export default function Home() {
+export default function Home({navigation}) {
   return (
     <View style={{backgroundColor: '#E5E5E5', flex: 1}}>
       <ScrollView>
@@ -27,8 +27,8 @@ export default function Home() {
           <StepCounter />
           <Appointments />
         </View>
-        <Categories />
-        <Symptoms />
+        <Categories navigation={navigation} />
+        <Symptoms navigation={navigation} />
         <View
           style={{
             flexDirection: 'row',
