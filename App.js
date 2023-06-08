@@ -1,9 +1,11 @@
 import React from 'react';
 import AppNavigator from './src/navigation/AppNavigator';
-import Home from './src/screens/frontend/Home';
-import Pharmacy from './src/screens/frontend/Pharmacy';
-import SplashScreen from './src/screens/frontend/SplashScreen';
+import {ContextProvider} from './src/context/userContext';
 
 export default function App() {
-  return <AppNavigator />;
+  return (
+    <ContextProvider>
+      <AppNavigator />
+    </ContextProvider>
+  );
 }

@@ -1,10 +1,19 @@
 import React from 'react';
-import {View, Text, StyleSheet, Image, TouchableHighlight} from 'react-native';
+import {
+  View,
+  Text,
+  StyleSheet,
+  Image,
+  TouchableHighlight,
+  Pressable,
+} from 'react-native';
 import user from '../../assets/images/user.png';
 import {TouchableOpacity} from 'react-native-gesture-handler';
 import auth from '@react-native-firebase/auth';
+import {useGlobalState} from '../../context/userContext';
 
 export default function HomeHeader() {
+  const {user} = useGlobalState();
   const handleLogout = () => {
     auth()
       .signOut()
@@ -19,15 +28,15 @@ export default function HomeHeader() {
     <View style={styles.headerContainer}>
       <View>
         <Text style={styles.heading}>Welcome back</Text>
-        <Text style={styles.title}>Jacob Jones</Text>
+        <Text style={styles.title}>Ahtisham</Text>
       </View>
       <View>
-        <TouchableOpacity onPress={() => alert('clicked')}>
+        <TouchableOpacity onPress={handleLogout}>
           <Image source={user} />
         </TouchableOpacity>
-        <TouchableHighlight onPress={handleLogout}>
+        <Pressable onPress={handleLogout}>
           <Text>Logout</Text>
-        </TouchableHighlight>
+        </Pressable>
       </View>
     </View>
   );

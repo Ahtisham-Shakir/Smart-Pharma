@@ -19,16 +19,17 @@ import MaterialCommunity from 'react-native-vector-icons/MaterialCommunityIcons'
 
 import auth from '@react-native-firebase/auth';
 import Suggest from '../screens/frontend/Suggest';
+import {useGlobalState} from '../context/userContext';
 
 export default function AppNavigator() {
-  const [user, setUser] = useState(false);
+  const {user, setUser} = useGlobalState();
   const screenOptions = {
     headerShown: false,
   };
 
   function onAuthStateChanged(res) {
-    setUser(res);
-    console.log(res);
+    setUser(res?._user);
+    console.log(user);
   }
 
   useEffect(() => {

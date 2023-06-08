@@ -35,3 +35,30 @@ export const symptoms = [
     path: '../../assets/images/blood.png',
   },
 ];
+
+// export const pharmacyData = [
+//   {
+//     title: 'Biotin',
+//     id: 1,
+//     image: require('../images/biotin.jpeg'),
+//     price: 500,
+//   },
+//   // {
+//   //   title: 'Ronirol',
+//   //   id: 2,
+//   //   image: require('../../assets/images/101.jpeg'),
+//   //   price: 350,
+//   // },
+//   // {
+//   //   title: 'Olepra',
+//   //   id: 3,
+//   //   image: require('../../assets/images/102.jpeg'),
+//   //   price: 100,
+//   // },
+//   // {
+//   //   title: 'Olepra',
+//   //   id: 3,
+//   //   image: require('../../assets/images/102.jpeg'),
+//   //   price: 100,
+//   // },
+// ];

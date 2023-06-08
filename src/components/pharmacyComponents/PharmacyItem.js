@@ -1,18 +1,21 @@
 import React from 'react';
 import {View, Text, StyleSheet, Image, TouchableOpacity} from 'react-native';
 
+import {useGlobalState} from '../../context/userContext';
+
 //icons
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import MaterialIcon from 'react-native-vector-icons/MaterialIcons';
 
-export default function PharmacyItem({image, navigation, price}) {
+export default function PharmacyItem({item}) {
+  const {addToCart} = useGlobalState();
   return (
     <View style={styles.pharmacyContainer}>
       <AntDesign name="hearto" size={18} style={styles.Icon} />
       <View style={styles.pharmacyHeader}>
-        <Image style={styles.pharmacyImage} source={image} />
+        <Image style={styles.pharmacyImage} source={item?.image} />
         <View>
-          <Text style={styles.title}>Astra Pharma</Text>
+          <Text style={styles.title}>{item?.title}</Text>
           <Text style={styles.reviews}>
             <AntDesign name="star" color="#FFA41B" size={9} /> 5.0 (125 reviews)
           </Text>
@@ -26,13 +29,13 @@ export default function PharmacyItem({image, navigation, price}) {
       <View style={styles.footer}>
         <View>
           <Text style={styles.footerText}>Available</Text>
-          <Text style={styles.footerPrice}>RS {price}</Text>
+          <Text style={styles.footerPrice}>RS {item?.price}</Text>
         </View>
         <TouchableOpacity
           style={styles.footerBtn}
-          onPress={() => navigation.navigate('PharmacyDetails')}>
+          onPress={() => addToCart(item)}>
           <Text style={{color: '#fff', fontSize: 12, fontWeight: 'bold'}}>
-            Buy
+            Add to Cart
           </Text>
         </TouchableOpacity>
       </View>
