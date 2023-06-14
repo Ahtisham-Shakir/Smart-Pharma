@@ -37,6 +37,7 @@ const styles = StyleSheet.create({
     fontSize: 10,
     paddingHorizontal: 17,
     marginVertical: 5,
+    color: 'black',
   },
   btn: {
     backgroundColor: '#1F97D0',

@@ -6,13 +6,31 @@ import PharmacyItem from '../../components/pharmacyComponents/PharmacyItem';
 
 import {pharmacyData} from './pharmacyData';
 
-export default function Pharmacy({navigation}) {
+export default function Pharmacy({navigation, route}) {
   const [search, setSearch] = useState('');
 
-  // filter data based on search
-  const filteredData = pharmacyData.filter(item =>
-    item.title.toLocaleLowerCase().includes(search.toLocaleLowerCase()),
-  );
+  let filteredData = [];
+  if (route?.params?.name) {
+    console.log(route.params.name);
+    filteredData = pharmacyData.filter(item => {
+      console.log(
+        'filter',
+        item?.category
+          ?.toLocaleLowerCase()
+          .includes(route?.params?.name.toLocaleLowerCase()),
+      );
+      return item?.category
+        ?.toLocaleLowerCase()
+        .includes(route?.params?.name.toLocaleLowerCase());
+    });
+  }
+  if (search) {
+    // filter data based on search
+    filteredData = pharmacyData.filter(item =>
+      item.title.toLocaleLowerCase().includes(search.toLocaleLowerCase()),
+    );
+  }
+
   return (
     <View
       style={{

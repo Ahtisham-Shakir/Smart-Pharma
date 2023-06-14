@@ -41,6 +41,8 @@ const Suggest = ({navigation, route}) => {
     } catch (error) {
       console.log('error', error);
       alert('Something went wrong!');
+      setSymptoms('');
+      setLoading(false);
     }
   };
 
@@ -60,8 +62,9 @@ const Suggest = ({navigation, route}) => {
             placeholder="Enter Your Symptom"
             value={symptoms}
             onChangeText={newValue => setSymptoms(newValue)}
+            placeholderTextColor="#000"
           />
-          <Button title="Submit" onPress={getResults} disabled={false} />
+          <Button title="Submit" onPress={getResults} disabled={loading} />
         </View>
         {loading ? (
           <ActivityIndicator />
@@ -69,9 +72,11 @@ const Suggest = ({navigation, route}) => {
           <ScrollView style={{paddingHorizontal: 15}}>
             <Text style={styles.title}>Possible Diseases</Text>
             {results?.length ? (
-              results.map(re => <Text>{`\u2022 ${re}`}</Text>)
+              results.map(re => (
+                <Text style={{color: 'black'}}>{`\u2022 ${re}`}</Text>
+              ))
             ) : (
-              <Text>No Results</Text>
+              <Text style={{color: 'black'}}>No Results</Text>
             )}
           </ScrollView>
         )}
@@ -99,6 +104,7 @@ const styles = StyleSheet.create({
   },
   text: {
     padding: 15,
+    color: 'black',
   },
   input: {
     borderWidth: 1,
@@ -107,11 +113,13 @@ const styles = StyleSheet.create({
     padding: 10,
     margin: 10,
     flex: 1,
+    color: '#000',
   },
   title: {
     fontSize: 20,
     fontWeight: 'bold',
     marginBottom: 10,
+    color: 'black',
   },
   inputContainer: {
     display: 'flex',

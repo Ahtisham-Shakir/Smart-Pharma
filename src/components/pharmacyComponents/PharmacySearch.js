@@ -7,6 +7,7 @@ export default function PharmacySearch({search, setSearch}) {
     <View style={styles.searchContainer}>
       <EvilIcons name="search" size={24} color="#677294" />
       <TextInput
+        placeholderTextColor="black"
         style={styles.searchInput}
         placeholder="Search"
         value={search}
@@ -32,5 +33,6 @@ const styles = StyleSheet.create({
     flex: 1,
     color: '#677294',
     fontSize: 15,
+    placeholderTextColor: 'black',
   },
 });

@@ -9,11 +9,15 @@ export default function SearchBox() {
   return (
     <View style={styles.searchBoxContainer}>
       <View style={styles.searchContainer}>
-        <EvilIcons name="search" size={24} />
-        <TextInput style={styles.searchInput} placeholder="Search" />
+        <EvilIcons name="search" size={24} color="gray" />
+        <TextInput
+          style={styles.searchInput}
+          placeholder="Search"
+          placeholderTextColor="black"
+        />
       </View>
       <View style={styles.filter}>
-        <FontAwesome5 name="filter" size={15} />
+        <FontAwesome5 name="filter" size={15} color="gray" />
       </View>
     </View>
   );
@@ -39,6 +43,8 @@ const styles = StyleSheet.create({
     paddingRight: 25,
     height: 44,
     width: '100%',
+    placeholderTextColor: 'black',
+    color: 'black',
   },
   filter: {
     backgroundColor: '#fff',

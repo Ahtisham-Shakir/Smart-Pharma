@@ -35,7 +35,7 @@ export default function HomeHeader() {
           <Image source={user} />
         </TouchableOpacity>
         <Pressable onPress={handleLogout}>
-          <Text>Logout</Text>
+          <Text style={{color: 'black'}}>Logout</Text>
         </Pressable>
       </View>
     </View>

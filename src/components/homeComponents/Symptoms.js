@@ -59,6 +59,7 @@ const Box = ({text, src, navigation}) => {
         <View style={styles.imgContainer}>
           <Image source={src} style={styles.img} />
         </View>
+
         <Text style={styles.text}>{text}</Text>
       </View>
     </Pressable>
@@ -101,5 +102,6 @@ const styles = StyleSheet.create({
   text: {
     marginVertical: 5,
     fontSize: 15,
+    color: 'black',
   },
 });
